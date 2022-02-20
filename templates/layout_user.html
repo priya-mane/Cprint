@@ -26,7 +26,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
@@ -37,7 +36,21 @@
       </nav>
     </header>
     <main role="main" class="container">
-      
+      <div class="row">
+        <div class="col-md-8 mx-auto" >
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {% block content %}{% endblock %}
+        </div>
+
+      </div>
     </main>
 
     <!-- Optional JavaScript -->
